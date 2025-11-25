@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<script>
-  (function(){
-    var mode = window.innerWidth >= 768 ? "pc" : "sp";
-    document.documentElement.classList.add(mode);
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- PC/SP 即時判定：FOUC完全対策 -->
+  <script>
+    (function(){
+      document.documentElement.classList.add(
+        window.innerWidth >= 768 ? "pc" : "sp"
+      );
+    })();
+  </script>
 
-    if (mode === "sp") location.href = "index.html";
-  })();
-</script>
-
+  <style>
+    .pc-only, .sp-only { display: none; }
+    .pc .pc-only { display: block; }
+    .sp .sp-only { display: block; }
+  </style>
 
 
   <meta charset="UTF-8">
