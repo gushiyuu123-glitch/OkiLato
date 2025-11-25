@@ -16,11 +16,6 @@
     .sp .sp-only { display:block; }
   </style>
 
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OkiLato - Island Freshness</title>
-
   <!-- Swiper（スライダー用） -->
   <link
     rel="stylesheet"
@@ -649,14 +644,7 @@
       color:rgba(0,0,0,0.45);
       letter-spacing:0.08em;
     }
-  /* 初期状態は両方隠す（FOUC 防止の基礎） */
-  .pc-only, .sp-only { display: none; }
 
-  /* PC判定 */
-  .pc .pc-only { display: block; }
-
-  /* SP判定 */
-  .sp .sp-only { display: block; }
   </style>
 </head>
 
@@ -887,15 +875,16 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 
- function switchToSP() {
-  // 描画が安定する 150ms 後に検査する
-  setTimeout(() => {
+  /* ============
+     PC/SP 切替
+  ============ */
+  function switchToSP() {
     if (window.innerWidth < 768) {
       window.location.href = "index.html";
     }
-  }, 150);
-}
-switchToSP();
+  }
+  switchToSP();
+  window.addEventListener("resize", switchToSP);
 
   /* ============
      NAV 出現
