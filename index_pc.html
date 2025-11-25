@@ -649,6 +649,23 @@
 </head>
 
 <body>
+  <style>
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity .4s ease;
+}
+#preloader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+</style>
+
+<div id="preloader"></div>
+
 <main>
 
 <!-- NAV -->
@@ -874,7 +891,11 @@
 ========================= -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("preloader").classList.add("hide");
+  }, 300); // ← 一瞬だけ前ページの影響をブロック
+});
   /* ============
      PC/SP 切替
   ============ */
