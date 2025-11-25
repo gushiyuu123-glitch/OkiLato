@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>OkiLato - Island Freshness</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Noto Sans JP", sans-serif;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    /* ======================
+       HERO
+    ====================== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+    .hero img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 90%;
+      height: 90%;
+      object-fit: cover;
+      object-position: center right;
+      margin-top: 10px;
+    }
+    /* レイヤー：光＋ターコイズ */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.25) 0%,
+        rgba(255,255,255,0.18) 35%,
+        rgba(95,211,221,0.10) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* ロゴ＆テキスト */
+    .hero-text {
+      position: absolute;
+      top: 19%;
+      left: 8%;
+      z-index: 5;
+      max-width: 70%;
+    }
+    .logo {
+      font-size: 3.1rem;
+      font-weight: 300;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+    }
+    .logo span:nth-child(1) {
+      color: #5fd3dd; /* Oki */
+    }
+    .logo span:nth-child(2) {
+      color: #ffcf65; /* Lato */
+    }
+
+    .sub {
+      margin-top: 12px;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .8rem;
+      color: rgba(0,0,0,0.50);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      animation: scrollFade 2.8s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes scrollFade {
+      0% { opacity: 0.15; transform: translate(-50%, 0); }
+      50% { opacity: 1; transform: translate(-50%, 6px); }
+      100% { opacity: 0.15; transform: translate(-50%, 0); }
+    }
+/* ======================
+   FLAVOR SECTIONS 改善版
+====================== */
+
+.flavor-section {
+  position: relative;
+height: 70vh;
+  width: 100%;
+  overflow: hidden;
+  color: #fff;
+}
+
+.flavor-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+   object-fit: cover;
+   object-position: center 30%; /* ← 画像の“縦位置”を上げて整える */
+  transform: scale(0.80);     /* ← 写真がドアップすぎる問題を解消 */
+}
+
+/* レイヤー（淡い白+ターコイズ） */
+.flavor-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.05) 0%,
+    rgba(255,255,255,0.12) 30%,
+    rgba(95,211,221,0.08) 100%
+  );
+  pointer-events: none;
+}
+
+/* テキストを中央より下へ配置 */
+.flavor-inner {
+  position: absolute;
+  bottom: 8%;      /* ← 下からの距離（調整可能） */
+  left: 50%;
+  transform: translateX(-50%);  /* ← 水平方向の中央揃え */
+  width: 100%;     /* ← 中央揃えを安定させるため */
+  display: flex;
+  justify-content: center;  /* ← 子要素を中央へ */
+}
+
+
+/* バッジ感を消してホテル風 */
+.flavor-label {
+  padding: 14px 28px;
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.28); /* 少し濃くして視認性UP */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* ほんのり影 */
+}
+
+/* フレーバー名：アクセント色 */
+.flavor-en {
+  font-size: 1.25rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 300;
+  margin-bottom: 4px;
+  color: var(--accent, #fff);
+}
+
+/* 日本語：視認性を上げる */
+.flavor-ja {
+   font-size: .78rem;
+  letter-spacing: 0.12em;
+  color: rgba(0,0,0,0.75);
+}
+/* ====================== */
+/* Concept Section        */
+/* ====================== */
+
+.concept {
+  padding: 70px 24px;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #e9f8fb 100%
+  );
+}
+
+.concept-inner {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* 英語タイトル（高級・軽さ） */
+.concept-en {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  font-weight: 300;
+  margin-bottom: 26px;
+  color: #46b7c9; /* OkiLato Turquoise */
+}
+
+/* 日本語 */
+.concept-ja {
+  font-size: .95rem;
+  line-height: 1.9;
+  color: rgba(0,0,0,0.72);
+  letter-spacing: 0.03em;
+}
+
+/* フェードイン */
+.fade-up {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ====================== */
+/* ABOUT — Luxury Version */
+/* ====================== */
+
+.about--luxury {
+  padding: 120px 28px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,1) 0%,
+    rgba(235,250,252,0.5) 100%
+  );
+}
+
+.about-inner {
+  max-width: 380px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 英語タイトル（オーラを出すため淡く） */
+.about-en {
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  font-weight: 300;
+  color: rgba(70, 175, 190, 0.9);
+  margin-bottom: 36px;
+}
+
+/* 日本語タイトル（高級感の核心） */
+.about-ja-title {
+  font-size: 1.3rem;
+  line-height: 2.1;
+  margin-bottom: 48px;
+  font-weight: 300;
+  color: rgba(0,0,0,0.85);
+}
+
+/* リスト（より上質な余白） */
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 48px;
+}
+
+.about-list li {
+  font-size: .98rem;
+  line-height: 1.95;
+  margin-bottom: 32px;
+  color: rgba(0,0,0,0.7);
+}
+
+/* 素材名の強調は“太くしすぎない” */
+.about-list strong {
+  font-weight: 500;
+  color: rgba(0,0,0,0.88);
+}
+
+/* フッター */
+.about-footer {
+  font-size: .95rem;
+  line-height: 1.9;
+  color: rgba(0,0,0,0.65);
+}
+
+/* フェードアップ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 1.1s ease, transform 1.1s ease;
+}
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ========================= */
+/* Access Section            */
+/* ========================= */
+
+.access {
+  padding: 90px 26px;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #e6f8fa 100%
+  );
+}
+
+.access-inner {
+  max-width: 380px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 英語タイトル */
+.access-en {
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  font-weight: 300;
+  color: rgba(70, 175, 190, 0.9);
+  margin-bottom: 16px;
+}
+
+/* 日本語サブ */
+.access-ja {
+  font-size: 1rem;
+  color: rgba(0,0,0,0.75);
+  margin-bottom: 32px;
+  letter-spacing: 0.03em;
+}
+
+/* MAP */
+.access-map img {
+  width: 100%;
+  border-radius: 18px;
+  opacity: 0.65;
+  filter: blur(0.5px);
+  box-shadow: 0 0 0 rgba(0,0,0,0); /* 影なし */
+  margin-bottom: 32px;
+}
+
+/* 情報リスト */
+.access-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.access-info li {
+  font-size: .95rem;
+  color: rgba(0,0,0,0.75);
+  line-height: 1.9;
+  margin-bottom: 6px;
+}
+
+/* アニメ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ========================= */
+/* CTA Section               */
+/* ========================= */
+
+.cta {
+  padding: 100px 24px;
+  background: linear-gradient(
+    to bottom,
+  
+    #e8fafc 90%
+  );
+  text-align: center;
+}
+
+.cta-inner {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* メインタイトル */
+.cta-title {
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.75);
+  margin-bottom: 12px;
+}
+
+/* サブテキスト */
+.cta-sub {
+  font-size: .95rem;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 34px;
+}
+
+/* ボタン（高級版） */
+.cta-btn {
+  display: inline-block;
+  padding: 14px 34px;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: #46b7c9;
+  border-radius: 999px;
+
+  border: 1px solid rgba(70,183,201,0.35);
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(8px);
+
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    letter-spacing 0.4s ease;
+}
+
+/* ホバー風アニメ（スマホでも軽く反応） */
+.cta-btn:active,
+.cta-btn:hover {
+  background: rgba(255,255,255,0.75);
+  border-color: rgba(70,183,201,0.55);
+  letter-spacing: 0.09em;
+}
+/* ========================= */
+/* Footer (Luxury)           */
+/* ========================= */
+
+.footer {
+  padding: 60px 24px 80px;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+
+  );
+  text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.footer-inner {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ブランド名 */
+.footer-brand {
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.75);
+  margin-bottom: 0px;
+}
+
+/* SNSアイコン */
+.footer-sns img {
+  width: 24px;
+  opacity: .6;
+  transition: opacity .3s ease;
+}
+
+.footer-sns img:hover {
+  opacity: .85;
+}
+
+/* コピーライト */
+.footer-copy {
+  display: block;
+  font-size: .75rem;
+  color: rgba(0,0,0,0.45);
+  letter-spacing: 0.04em;
+}
+/* ============================ */
+/* NAV (scroll reveal)          */
+/* ============================ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.nav.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 10px 16px;
+}
+
+/* ロゴ */
+.nav-logo {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(0,0,0,0.72);
+  letter-spacing: 0.06em;
+}
+
+/* ハンバーガー */
+.nav-btn {
+  width: 28px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.nav-btn span {
+  display: block;
+  height: 2px;
+  background: rgba(0,0,0,0.75);
+  border-radius: 2px;
+}
+
+/* ============================ */
+/* MENU OVERLAY                 */
+/* ============================ */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .45s ease;
+  z-index: 90;
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* メニューリンク */
+.menu-links {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.menu-links a {
+  display: block;
+  margin-bottom: 24px;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  color: rgba(0,0,0,0.75);
+}
+
+  </style>
+</head>
+
+<body>
+<!-- ======== NAV ======== -->
+<header id="nav" class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">OkiLato</div>
+
+    <button id="navBtn" class="nav-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ======== MENU OVERLAY ======== -->
+<div id="menuOverlay" class="menu-overlay">
+  <div class="menu-links">
+    <a href="#hero">Home</a>
+    <a href="#concept">Concept</a>
+    <a href="#about">Ingredients</a>
+    <a href="#access">Access</a>
+  </div>
+</div>
+
+  <!-- ========= HERO ========= -->
+  <section class="hero">
+    <!-- ★ HERO画像：裕人のファイル名に変えてOK -->
+    <img
+      src="imges.sp/hero.sp.png"
+      alt="OkiLato Hero"
+      class="hero-img"
+    />
+
+    <div class="hero-text">
+      <h1 class="logo">
+        <span>Oki</span><span>Lato</span>
+      </h1>
+      <div class="sub">Island Freshness.</div>
+    </div>
+
+    <div class="scroll">scroll</div>
+  </section>
+
+  <!-- ========= FLAVOR 1: Mango ========= -->
+  <section class="flavor-section flavor--mango">
+    <img
+      src="imges.sp/flavor-mango1.sp.png"
+      alt="Mango Gelato"
+      class="flavor-bg"
+    />
+    <div class="flavor-inner">
+      <div class="flavor-label">
+        <div class="flavor-en">Sunrise Mango</div>
+<div class="flavor-ja">サンライズ・マンゴー</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FLAVOR 2: Shikuwasa ========= -->
+  <section class="flavor-section flavor--shiku">
+    <img
+      src="imges.sp/flavor-shikuwasa1.sp.png"
+      alt="Shikuwasa Gelato"
+      class="flavor-bg"
+    />
+    <div class="flavor-inner">
+      <div class="flavor-label">
+       <div class="flavor-en">Island Shikuwasa</div>
+<div class="flavor-ja">アイランド・シークヮーサー</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FLAVOR 3: Beniimo ========= -->
+  <section class="flavor-section flavor--beniimo">
+    <img
+      src="imges.sp/flavor-beniimo1.sp.png"
+      alt="Beniimo Gelato"
+      class="flavor-bg"
+    />
+    <div class="flavor-inner">
+      <div class="flavor-label">
+        <div class="flavor-en">Coral Purple</div>
+        <div class="flavor-ja">コーラル・パープル</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FLAVOR 4: Salt Chinsuko ========= -->
+  <section class="flavor-section flavor--salt">
+    <img
+      src="imges.sp/flavor-salt-chinsuko1.sp.png"
+      alt="Salt Chinsuko Gelato"
+      class="flavor-bg"
+    />
+    <div class="flavor-inner">
+      <div class="flavor-label">
+        <div class="flavor-en">Chinsuko Cream Salt</div>
+        <div class="flavor-ja">ちんすこう・クリームソルト</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FLAVOR 5: Pineapple ========= -->
+  <section class="flavor-section flavor--pine">
+    <img
+      src="imges.sp/flavor-pineapple1.sp.png"
+      alt="Pineapple Gelato"
+      class="flavor-bg"
+    />
+    <div class="flavor-inner">
+      <div class="flavor-label">
+        <div class="flavor-en">Rainforest Pine</div>
+        <div class="flavor-ja">レインフォレスト・パイン</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= FLAVOR 6: Dragon Fruit ========= -->
+  <section class="flavor-section flavor--dragon">
+    <img
+      src="imges.sp/flavor-dragonfruit1.sp.png"
+      alt="Dragon Fruit Gelato"
+      class="flavor-bg"
+    />
+    <div class="flavor-inner">
+      <div class="flavor-label">
+        <div class="flavor-en">Dragon Bloom</div>
+        <div class="flavor-ja">ドラゴン・ブルーム</div>
+      </div>
+    </div>
+  </section>
+<section class="concept">
+  <div class="concept-inner fade-up">
+    <h2 class="concept-en">Island Freshness,<br>Melted into every scoop.</h2>
+
+    <p class="concept-ja">
+      沖縄の海と果実が、<br>
+      ひとくちにやわらかく混ざり合う。<br><br>
+      強い日差しの下で育った果実、<br>
+      潮風が運ぶ塩の気配、<br>
+      朝の海面のような透明感。<br><br>
+      OkiLatoは、<br>
+      “島の味わい” をそっと冷たくすくい取った、<br>
+      沖縄ジェラート。
+    </p>
+  </div>
+</section>
+<section class="about about--luxury fade-up">
+  <div class="about-inner">
+
+    <h2 class="about-en">Our Ingredients</h2>
+
+    <h3 class="about-ja-title">
+      沖縄の自然素材が<br>
+      そっと溶け込むように。
+    </h3>
+
+    <ul class="about-list">
+      <li>
+        <strong>宮古島マンゴー</strong><br>
+        濃厚で香り高い果実だけを、贅沢に。
+      </li>
+      <li>
+        <strong>沖縄シークヮーサー</strong><br>
+        朝露のような酸味と透明感。
+      </li>
+      <li>
+        <strong>島 塩</strong><br>
+        ミネラルの旨みが、後味に静かに残る。
+      </li>
+      <li>
+        <strong>紅芋・島果実</strong><br>
+        島の色彩そのままの、優しい香り。
+      </li>
+    </ul>
+
+    <p class="about-footer">
+      OkiLatoは、沖縄の自然に寄り添い、<br>
+      素材の呼吸を感じるジェラートを<br>
+      一つひとつ丁寧に作っています。
+    </p>
+
+  </div>
+</section>
+<section class="access fade-up">
+  <div class="access-inner">
+
+    <h2 class="access-en">Access</h2>
+    <p class="access-ja">OkiLato — 那覇本店</p>
+
+    <div class="access-map">
+      <img src="imges.pc/kokusai1.png" alt="OkiLato Access Map">
+    </div>
+
+    <ul class="access-info">
+      <li>沖縄県那覇市 ○○○○ 1-2-3</li>
+      <li>営業時間：11:00 – 18:00</li>
+      <li>定休日：水曜</li>
+    </ul>
+
+  </div>
+</section>
+<section class="cta fade-up">
+  <div class="cta-inner">
+
+    <h2 class="cta-title">Taste the Island</h2>
+    <p class="cta-sub">ご来店をお待ちしています。</p>
+
+    <a href="#" class="cta-btn">
+      Visit OkiLato
+    </a>
+
+  </div>
+</section>
+<footer class="footer fade-up">
+  <div class="footer-inner">
+
+    <div class="footer-brand">OkiLato</div>
+
+    <div class="footer-sns">
+      <a href="#" class="sns-link">
+        <img src="instagram-line.svg" alt="Instagram">
+      </a>
+    </div>
+
+    <small class="footer-copy">
+      © 2025 OkiLato. All rights reserved.
+    </small>
+
+  </div>
+</footer>
+
+  <script>
+      const nav = document.getElementById("nav");
+  const btn = document.getElementById("navBtn");
+  const overlay = document.getElementById("menuOverlay");
+
+  // スクロールでナビ表示
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 80) {
+      nav.classList.add("show");
+    } else {
+      nav.classList.remove("show");
+    }
+  });
+
+  // メニュー開閉
+  btn.addEventListener("click", () => {
+    overlay.classList.toggle("show");
+  });
+
+  // メニュー内リンク押したら閉じる
+  document.querySelectorAll(".menu-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      overlay.classList.remove("show");
+    });
+  });
+    // シンプルなIntersectionObserverで .show を付与
+    const sections = document.querySelectorAll(".flavor-section");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("show");
+        });
+      },
+      { threshold: 0.35 }
+    );
+    sections.forEach((sec) => io.observe(sec));
+    const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add("show");
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll(".fade-up").forEach(el=>{
+    observer.observe(el);
+  });
+  
+  function backToPC() {
+  if (window.innerWidth >= 768) {
+    window.location.href = "index_pc.html";
+  }
+}
+
+backToPC();
+window.addEventListener("resize", backToPC);
+
+  </script>
+
+</body>
+</html>
