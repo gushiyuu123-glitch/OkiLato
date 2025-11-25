@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <script>
-    (function(){
-      var c = window.innerWidth >= 768 ? "pc" : "sp";
-      document.documentElement.classList.add(c);
-    })();
-  </script>
+<script>
+  (function(){
+    var mode = window.innerWidth >= 768 ? "pc" : "sp";
+    document.documentElement.classList.add(mode);
+
+    if (mode === "sp") location.href = "index.html";
+  })();
+</script>
+
+
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -640,7 +644,14 @@
       color:rgba(0,0,0,0.45);
       letter-spacing:0.08em;
     }
+  /* 初期状態は両方隠す（FOUC 防止の基礎） */
+  .pc-only, .sp-only { display: none; }
 
+  /* PC判定 */
+  .pc .pc-only { display: block; }
+
+  /* SP判定 */
+  .sp .sp-only { display: block; }
   </style>
 </head>
 
