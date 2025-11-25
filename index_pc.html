@@ -878,13 +878,15 @@
   /* ============
      PC/SP 切替
   ============ */
-  function switchToSP() {
-    if (window.innerWidth < 768) {
-      window.location.href = "index.html";
-    }
+function switchToSP() {
+  const isSP = window.innerWidth < 768;
+  const isNowPC = location.pathname.includes("index_pc");
+
+  if (isSP && isNowPC) {
+    window.location.href = "index.html";
   }
-  switchToSP();
-  window.addEventListener("resize", switchToSP);
+}
+switchToSP();
 
   /* ============
      NAV 出現
