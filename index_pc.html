@@ -2,18 +2,14 @@
 <html lang="ja">
 <head>
   <script>
-    // CSSより前に即座に実行される IIFE で FOUC を完全防止
-    (function() {
+    (function(){
       var c = window.innerWidth >= 768 ? "pc" : "sp";
       document.documentElement.classList.add(c);
     })();
   </script>
 
-  <!-- ここにCSSやmetaが続く -->
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>OkiLato - Island Freshness</title>
 
   <!-- Swiper（スライダー用） -->
@@ -875,16 +871,15 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 
-  /* ============
-     PC/SP 切替
-  ============ */
-  function switchToSP() {
+ function switchToSP() {
+  // 描画が安定する 150ms 後に検査する
+  setTimeout(() => {
     if (window.innerWidth < 768) {
       window.location.href = "index.html";
     }
-  }
-  switchToSP();
-  window.addEventListener("resize", switchToSP);
+  }, 150);
+}
+switchToSP();
 
   /* ============
      NAV 出現
